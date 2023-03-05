@@ -3,5 +3,6 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/hib-training-project" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/hibernate-training-project" vcs="Git" />
   </component>
 </project>
