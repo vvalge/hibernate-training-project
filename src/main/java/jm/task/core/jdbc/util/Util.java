@@ -1,11 +1,17 @@
 package jm.task.core.jdbc.util;
 
+import jm.task.core.jdbc.model.User;
+import org.hibernate.HibernateException;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Util {
+    private static SessionFactory sessionFactory;
     private static final String DB_USERNAME = "root";
     private static final String DB_PASSWORD = "root";
     private static final String DB_URL = "jdbc:mysql://localhost:3306/usersdb";
@@ -27,8 +33,19 @@ public class Util {
             e.printStackTrace();
         }
         return connection;
-    }// реализуйте настройку соеденения с БД
+    }
 
-    //public Connection getConnection() {
-    //}
+    public static SessionFactory HibConnection() {
+        try {
+            sessionFactory = new Configuration()
+                    .addAnnotatedClass(User.class)
+                    .buildSessionFactory();
+            System.out.println("Connected");
+        } catch (HibernateException e) {
+            System.out.println("Connection failed");
+            e.printStackTrace();
+        }
+        return sessionFactory;
+    }
+
 }
